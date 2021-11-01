@@ -10,9 +10,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.ChunkRandom;
+import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
@@ -48,6 +50,7 @@ public class OldWorldGen extends NoiseChunkGenerator {
         this.limitedWorldDepth = LWD;
         this.limitedWorldWidth = LWL;
     }
+    @Override public void carve(long seed, BiomeAccess access, Chunk chunk, GenerationStep.Carver carver) {}
 
     @Override public NoiseChunkGenerator withSeed(long seed) {return new OldWorldGen(this.biomeSource.withSeed(seed), seed, this.limitedWorldDepth, this.limitedWorldWidth, settings);}
 
