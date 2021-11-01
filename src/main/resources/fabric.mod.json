@@ -3,7 +3,7 @@
   "id": "oldworldjava",
   "version": "${version}",
 
-  "name": "Bedrock Old World Type",
+  "name": "Bedrock Old World Type For Java Edition",
   "description": "A poor attempt at recreating Bedrock's 'Old' world type in Java Edition.",
   "authors": [
     "PseudoDistant"
