@@ -1,5 +1,6 @@
 package io.github.pseudodistant.oldworldjava;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
@@ -18,7 +19,11 @@ import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.ConfiguredFeatures;
+import net.minecraft.world.gen.feature.Feature;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class OldWorldGen extends NoiseChunkGenerator {
@@ -28,6 +33,27 @@ public class OldWorldGen extends NoiseChunkGenerator {
     protected BiomeSource biomeSource;
     protected final int limitedWorldDepth;
     protected final int limitedWorldWidth;
+    protected final List<ConfiguredFeature<?, ?>> features = ImmutableList.<ConfiguredFeature<?, ?>>of(
+            ConfiguredFeatures.ORE_ANDESITE,
+            ConfiguredFeatures.ORE_DEEPSLATE,
+            ConfiguredFeatures.ORE_DIORITE,
+            ConfiguredFeatures.ORE_GRANITE,
+            ConfiguredFeatures.ORE_REDSTONE,
+            ConfiguredFeatures.ORE_CLAY,
+            ConfiguredFeatures.ORE_COAL,
+            ConfiguredFeatures.ORE_COPPER,
+            ConfiguredFeatures.ORE_DIAMOND,
+            ConfiguredFeatures.ORE_DIRT,
+            ConfiguredFeatures.ORE_EMERALD,
+            ConfiguredFeatures.ORE_GOLD,
+            ConfiguredFeatures.ORE_GRANITE,
+            ConfiguredFeatures.ORE_GRAVEL,
+            ConfiguredFeatures.ORE_INFESTED,
+            ConfiguredFeatures.ORE_IRON,
+            ConfiguredFeatures.ORE_LAPIS,
+            ConfiguredFeatures.ORE_REDSTONE,
+            ConfiguredFeatures.ORE_TUFF
+    );
 
     public static final Codec<OldWorldGen> CODEC = RecordCodecBuilder.create((instance) -> instance
             .group(BiomeSource.CODEC.fieldOf("biome_source").forGetter((generator) -> generator.biomeSource),
@@ -59,6 +85,8 @@ public class OldWorldGen extends NoiseChunkGenerator {
         //TODO: Do something cool with this, maybe. Might not actually be needed.
         super.buildSurface(region, chunk);
     }
+
+    //@Override public List<List<Supplier<ConfiguredFeature<?, ?>>>> getFeatures() {return this.features;}
 
     @Override
     public void generateFeatures(ChunkRegion region, StructureAccessor accessor) {
