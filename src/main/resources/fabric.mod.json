@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "io.github.pseudodistant.oldworldjava.OldWorldJava"
     ]
   },
   "mixins": [
@@ -34,5 +34,6 @@
   },
   "suggests": {
     "another-mod": "*"
-  }
+  },
+  "accessWidener": "oldworld.aw"
 }
